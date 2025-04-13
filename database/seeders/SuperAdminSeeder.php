@@ -17,6 +17,8 @@ class SuperAdminSeeder extends Seeder
         $user->name="super admin";
         $user->email="admin@admin.com";
         $user->password=Hash::make("monstermash");
+        $user->assignRole('super-admin');
+
         $user->save();
 
        
