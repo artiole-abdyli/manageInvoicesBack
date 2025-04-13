@@ -27,6 +27,7 @@ public function registerCompany(Request $request){
     $company->company_name=$request->input("company_name");
     $company->max_number_of_employees=$request->input("max_number_of_employees");
     $company->save();
+    return response()->json('company is created successfully');
 }
 }
 ?>
