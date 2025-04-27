@@ -24,4 +24,9 @@ class ProductsService
         $product->save();
         return response()->json("product created successfully");
     }
+    public function listOfProducts()
+    {
+        $products = Product::all();
+        return $products;
+    }
 }
