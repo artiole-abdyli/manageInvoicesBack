@@ -13,14 +13,12 @@ class SuperAdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $user=new User();
-        $user->name="super admin";
-        $user->email="admin@admin.com";
-        $user->password=Hash::make("monstermash");
+        $user = new User();
+        $user->name = "super admin";
+        $user->email = "chique@dolls.com";
+        $user->password = Hash::make("monstermash");
         $user->assignRole('super-admin');
 
         $user->save();
-
-       
     }
 }

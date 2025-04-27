@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
+
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Invalid Credentials'], 401);
         }
 
         return $this->respondWithToken($token);
     }
-
+    public function auth()
+    {
+        $authUser = auth()->user();
+        return $authUser->id;
+        return auth()->user()->hasRole("admin");
+    }
     public function refresh()
     {
         return $this->respondWithToken(JWTAuth::refresh());
