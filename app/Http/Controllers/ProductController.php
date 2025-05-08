@@ -15,7 +15,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $this->productService->listOfProducts();
+        return $this->productService->listOfProducts();
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $this->productService->updateProduct($request, $id);
     }
 
     /**
