@@ -21,6 +21,7 @@ class ProductsService
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->number_of_reservation = $request->input('number_of_reservation');
         $product->save();
         return response()->json("product created successfully");
     }

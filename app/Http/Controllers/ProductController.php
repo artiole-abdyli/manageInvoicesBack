@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return $this->productService->showProduct($id);
     }
 
     /**
@@ -61,6 +61,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->productService->deleteProduct($id);
     }
 }
