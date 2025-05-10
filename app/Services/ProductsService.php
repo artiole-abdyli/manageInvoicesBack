@@ -24,6 +24,21 @@ class ProductsService
         $product->save();
         return response()->json("product created successfully");
     }
+    public function deleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return response()->json("product deleted succesfully");
+    }
+    public function showProduct($id)
+    {
+        $product = Product::where('id', $id);
+        return response()->json([
+            'message' => 'product retrieved successfully',
+            'data' => $product
+        ]);
+    }
+
     public function updateProduct(Request $request, $id)
     {
         try {
