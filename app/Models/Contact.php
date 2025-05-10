@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Contact extends Authenticatable implements JWTSubject
+class Contact extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 

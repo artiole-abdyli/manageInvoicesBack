@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Models\Company;
 use App\Models\User;
+use App\Models\Company;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactService
@@ -15,20 +16,49 @@ class ContactService
     {
         $this->contact = $contact;
     }
-
-    public function registerCompany(Request $request)
+    public function showContact($id)
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
-        $user->role = "user";
+        $contact = Contact::where('id', $id)->first();
+        return response()->json([
+            'message' => 'contact retrieved succesfully',
+            'data' => $contact
+        ]);
+    }
 
-        $user->save();
-        $company = new Company();
-        $company->company_name = $request->input("company_name");
-        $company->max_number_of_employees = $request->input("max_number_of_employees");
-        $company->save();
-        return response()->json('company is created successfully');
+    public function createContact(Request $request)
+    {
+        $contact = new Contact();
+        $contact->firstname = $request->input("firstname");
+        $contact->lastname = $request->input("lastname");
+        $contact->city = $request->input("city");
+        $contact->country = $request->input("country");
+        $contact->phone_number = $request->input("phone_number");
+        $contact->save();
+        return response()->json('Contact is created successfully');
+    }
+    public function updateContact(Request $request, $id)
+    {
+        $contact = Contact::findOrFail($id);
+        $contact->firstname = $request->input("firstname");
+        $contact->lastname = $request->input("lastname");
+        $contact->city = $request->input("city");
+        $contact->country = $request->input("country");
+        $contact->phone_number = $request->input("phone_number");
+        $contact->save();
+        return response()->json('Contact is updated successfully');
+    }
+    public function listOfContacts()
+    {
+        $contacts = Contact::all();
+        return response()->json([
+            'data' => $contacts,
+
+        ]);
+    }
+    public function deleteContact($id)
+    {
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+        return response()->json('Contact is deleted successfully');
     }
 }
