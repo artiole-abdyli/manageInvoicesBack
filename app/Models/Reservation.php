@@ -23,4 +23,13 @@ class Reservation extends Authenticatable
         'payment',
         'extra_requirement'
     ];
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
