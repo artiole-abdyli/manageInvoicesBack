@@ -18,7 +18,6 @@ class Reservation extends Authenticatable
         'contact_id',
         'product_id',
         'date',
-        'number_of_dresses',
         'returning_date',
         'payment',
         'extra_requirement'

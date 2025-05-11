@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
 
             $table->string('date');
-            $table->integer('number_of_dresses');
             $table->string('returning_date');
             $table->string('payment');
             $table->string('extra_requirement')->nullable();
