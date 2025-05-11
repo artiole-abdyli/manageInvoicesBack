@@ -22,9 +22,6 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('deposit', 10, 2)->nullable();
             $table->decimal('remaining_payment', 10, 2)->nullable();
-
-
-
             $table->timestamps();
         });
     }
