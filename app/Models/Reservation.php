@@ -20,7 +20,10 @@ class Reservation extends Authenticatable
         'date',
         'returning_date',
         'payment',
-        'extra_requirement'
+        'extra_requirement',
+        'price',
+        'deposit',
+        'remaining_payment'
     ];
     public function contact()
     {
