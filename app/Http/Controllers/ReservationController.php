@@ -45,7 +45,7 @@ class ReservationController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        return $this->reservationService->updateReservation($request, $id);
     }
 
     /**

@@ -53,4 +53,23 @@ class ReservationService
             'data' => $reservation
         ]);
     }
+    public function updateReservation(Request $request, $id)
+    {
+        try {
+            $reservation = Reservation::where('id', $id)->first();
+            $reservation->date = $request->input('date');
+            $reservation->returning_date = $request->input('returning_date');
+            $reservation->price = $request->input('price');
+            $reservation->deposit = $request->input('deposit');
+            $reservation->remaining_payment = $request->input('remaining_payment');
+            $reservation->extra_requirement = $request->input('extra_requirement');
+            $reservation->save();
+            return response()->json([
+                'message' => 'reservation updated succesfully',
+                'code' => 200
+            ]);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

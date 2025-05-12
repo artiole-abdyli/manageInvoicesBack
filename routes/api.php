@@ -32,6 +32,7 @@ Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
 Route::get('/reservations', [ReservationController::class, 'index']);
 Route::get('/reservation/{id}', [ReservationController::class, 'show']);
 Route::post('/reservations', [ReservationController::class, 'store']);
+Route::put('/reservations/{id}', [ReservationController::class, 'update']);
 Route::delete('/reservations/{id}', [ReservationController::Class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
