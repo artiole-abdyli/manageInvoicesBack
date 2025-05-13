@@ -61,4 +61,26 @@ class ContactService
         $contact->delete();
         return response()->json('Contact is deleted successfully');
     }
+
+    public function contactsOptions()
+    {
+        try {
+            $contacts = Contact::select('id', 'firstname', 'lastname')->get()->map(function ($contact) {
+                return [
+                    'label' => $contact->firstname . '' . $contact->lastname,
+                    'value' => $contact->id
+                ];
+            });
+            return response()->json([
+                'message' => 'success',
+                'code' => 200,
+                'data' => $contacts
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => $e->getMessage(),
+                'code' => 400
+            ]);
+        }
+    }
 }

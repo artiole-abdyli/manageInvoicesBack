@@ -53,4 +53,8 @@ class ContactController extends Controller
     {
         return $this->contactService->deleteContact($id);
     }
+    public function contactsOptions()
+    {
+        return $this->contactService->contactsOptions();
+    }
 }
