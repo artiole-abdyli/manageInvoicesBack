@@ -69,4 +69,26 @@ class ProductsService
             ], 500);
         }
     }
+    public function productsOptions()
+    {
+        try {
+            $products = Product::select('id', 'name')->get()->map(function ($product) {
+                return [
+                    'label' => $product->name,
+                    'value' => $product->id,
+                ];
+            });
+
+            return response()->json([
+                'message' => 'success',
+                'code' => 200,
+                'data' => $products
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'failed to load product options',
+                'code' => 400
+            ]);
+        }
+    }
 }

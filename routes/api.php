@@ -19,9 +19,10 @@ Route::get('/auth', [AuthController::class, 'auth']);
 
 Route::post("/products", [ProductController::class, 'store']);
 Route::get("/products", [ProductController::class, 'index']);
+
 Route::put("/products/update/{id}", [ProductController::class, 'update']);
 Route::delete("/products/{id}", [ProductController::class, 'destroy']);
-
+Route::get("/product-options", [ProductController::class, 'productsOptions']);
 Route::get('/contacts', [ContactController::class, 'index']);
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/contacts/{id}', [ContactController::class, 'show']);

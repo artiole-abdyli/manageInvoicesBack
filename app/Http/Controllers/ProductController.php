@@ -63,4 +63,8 @@ class ProductController extends Controller
     {
         return $this->productService->deleteProduct($id);
     }
+    public function productsOptions()
+    {
+        return $this->productService->productsOptions();
+    }
 }
