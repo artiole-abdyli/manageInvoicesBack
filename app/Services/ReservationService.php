@@ -23,7 +23,7 @@ class ReservationService
     }
     public function singleReservation($id)
     {
-        $reservation = Reservation::where('id', $id)->with("contact")->first();
+        $reservation = Reservation::with(['contact', 'product'])->find($id);
         return response()->json([
             'data' => $reservation
         ]);
