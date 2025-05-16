@@ -48,7 +48,7 @@ class ProductsService
     }
     public function showProduct($id)
     {
-        $product = Product::where('id', $id);
+        $product = Product::where('id', $id)->get();
         return response()->json([
             'message' => 'product retrieved successfully',
             'data' => $product

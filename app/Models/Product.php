@@ -26,6 +26,12 @@ class Product extends Authenticatable implements JWTSubject
         'description',
         'image'
     ];
+    protected $appends = ['image_full_url'];
+
+    public function getImageFullUrlAttribute()
+    {
+        return $this->image ? asset($this->image) : null;
+    }
 
 
 

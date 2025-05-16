@@ -19,6 +19,7 @@ Route::get('/auth', [AuthController::class, 'auth']);
 
 Route::post("/products", [ProductController::class, 'store']);
 Route::get("/products", [ProductController::class, 'index']);
+Route::get("/products/{id}", [ProductController::class, 'show']);
 
 Route::put("/products/update/{id}", [ProductController::class, 'update']);
 Route::delete("/products/{id}", [ProductController::class, 'destroy']);
