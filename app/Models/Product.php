@@ -24,6 +24,7 @@ class Product extends Authenticatable implements JWTSubject
         'name',
         'price',
         'description',
+        'image'
     ];
 
 

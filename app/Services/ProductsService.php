@@ -17,14 +17,29 @@ class ProductsService
 
     public function createProduct(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string',
+            'price' => 'required|numeric',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         $product = new Product();
         $product->name = $request->input('name');
-        $product->description = $request->input('description');
         $product->price = $request->input('price');
-        $product->number_of_reservation = $request->input('number_of_reservation');
+        $product->description = $request->input('description');
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('products', 'public');
+            $product->image = '/storage/' . $imagePath;
+        }
+
         $product->save();
-        return response()->json("product created successfully");
+
+        return response()->json(['message' => 'Product created successfully'], 201);
     }
+
     public function deleteProduct($id)
     {
         $product = Product::findOrFail($id);
