@@ -67,4 +67,8 @@ class ProductController extends Controller
     {
         return $this->productService->productsOptions();
     }
+    public function reservationsForThisProduct($id)
+    {
+        return $this->productService->reservationsForThisProduct($id);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ProductsService
@@ -48,7 +49,7 @@ class ProductsService
     }
     public function showProduct($id)
     {
-        $product = Product::where('id', $id)->get();
+        $product = Product::where('id', $id)->first();
         return response()->json([
             'message' => 'product retrieved successfully',
             'data' => $product
@@ -102,6 +103,23 @@ class ProductsService
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'failed to load product options',
+                'code' => 400
+            ]);
+        }
+    }
+    public function reservationsForThisProduct($id)
+    {
+        try {
+            $reservationsForThisProduct = Reservation::where('product_id', $id)->first();
+            return response()->json(
+                [
+                    'data' => $reservationsForThisProduct,
+
+                ]
+            );
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'failed to load reservations for this product',
                 'code' => 400
             ]);
         }
