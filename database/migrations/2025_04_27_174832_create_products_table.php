@@ -14,6 +14,9 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();
+            $table->string('image')->nullable();
+            $table->string('status')->nullable();
+
             $table->integer('number_of_reservation')->nullable();
             $table->timestamps();
         });
