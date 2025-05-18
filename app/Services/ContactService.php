@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf; // Make sure to import
 
 class ContactService
 {
@@ -82,5 +83,13 @@ class ContactService
                 'code' => 400
             ]);
         }
+    }
+    public function downloadContactsPdf()
+    {
+        $contacts = Contact::all();
+
+        $pdf = Pdf::loadView('contacts.pdf', ['contacts' => $contacts]);
+
+        return $pdf->download('contacts-list.pdf');
     }
 }

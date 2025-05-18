@@ -57,4 +57,8 @@ class ContactController extends Controller
     {
         return $this->contactService->contactsOptions();
     }
+    public function downloadContactsPdf()
+    {
+        return $this->contactService->downloadContactsPdf();
+    }
 }
