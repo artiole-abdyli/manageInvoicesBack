@@ -17,7 +17,7 @@ class ReservationService
     }
     public function listOfReservations()
     {
-        $reservations = Reservation::all();
+        $reservations = Reservation::with('contact')->get();
         return response()->json([
             'data' => $reservations
         ]);
