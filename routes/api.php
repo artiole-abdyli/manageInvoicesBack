@@ -37,6 +37,7 @@ Route::post('/reservations', [ReservationController::class, 'store']);
 Route::put('/reservations/{id}', [ReservationController::class, 'update']);
 Route::delete('/reservations/{id}', [ReservationController::Class, 'destroy']);
 Route::get('/contacts/download/pdf', [ContactController::class, 'downloadContactsPdf']);
+Route::get('/reservations/download/pdf', [ReservationController::class, 'downloadReservations']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

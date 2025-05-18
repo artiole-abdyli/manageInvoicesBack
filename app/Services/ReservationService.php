@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf; // Make sure to import
 
 class ReservationService
 {
@@ -71,5 +72,11 @@ class ReservationService
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+    }
+    public function downloadReservationsPdf()
+    {
+        $reservations = Reservation::all();
+        $pdf = Pdf::loadView('reservations.pdf', ['reservations' => $reservations]);
+        return $pdf->download('reservations-list.pdf');
     }
 }

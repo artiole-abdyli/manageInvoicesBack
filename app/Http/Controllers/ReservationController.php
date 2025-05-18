@@ -55,4 +55,8 @@ class ReservationController extends Controller
     {
         return $this->reservationService->deleteReservation($id);
     }
+    public function downloadReservations()
+    {
+        return $this->reservationService->downloadReservationsPdf();
+    }
 }
