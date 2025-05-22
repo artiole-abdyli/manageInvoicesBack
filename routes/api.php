@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactImportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
@@ -38,6 +39,8 @@ Route::put('/reservations/{id}', [ReservationController::class, 'update']);
 Route::delete('/reservations/{id}', [ReservationController::Class, 'destroy']);
 Route::get('/contacts/download/pdf', [ContactController::class, 'downloadContactsPdf']);
 Route::get('/reservations/download/pdf', [ReservationController::class, 'downloadReservations']);
+Route::post('/contacts/import', [ContactImportController::class, 'import']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
