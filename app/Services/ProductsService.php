@@ -59,16 +59,40 @@ class ProductsService
     public function updateProduct(Request $request, $id)
     {
         try {
-            $product = Product::where('id', $id)->first();
+            $request->validate([
+                'name' => 'required|string',
+                'price' => 'required|numeric',
+                'description' => 'nullable|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            $product = Product::where('id', $id)->firstOrFail();
             $product->name = $request->input('name');
             $product->description = $request->input('description');
             $product->price = $request->input('price');
+
+            if ($request->hasFile('image')) {
+                // Optional: delete old image if exists
+                if ($product->image && \Storage::disk('public')->exists(str_replace('/storage/', '', $product->image))) {
+                    \Storage::disk('public')->delete(str_replace('/storage/', '', $product->image));
+                }
+
+                // Store new image
+                $imagePath = $request->file('image')->store('products', 'public');
+                $product->image = '/storage/' . $imagePath;
+            }
+
             $product->save();
-            return response()->json("product with id: ${id} was updated successfully");
+
+            return response()->json("Product with id: {$id} was updated successfully");
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return response()->json([
+                'message' => 'Failed to update product',
+                'error' => $e->getMessage(),
+            ], 500);
         }
     }
+
     public function listOfProducts()
     {
         try {
