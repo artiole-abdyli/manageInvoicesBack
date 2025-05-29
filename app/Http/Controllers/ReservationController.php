@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Services\ReservationService;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class ReservationController extends Controller
 {
@@ -58,5 +60,16 @@ class ReservationController extends Controller
     public function downloadReservations()
     {
         return $this->reservationService->downloadReservationsPdf();
+    }
+    public function overdue()
+    {
+        $reservations = Reservation::overdue()->get();
+
+
+
+        return response()->json([
+            'data' => $reservations,
+            'count' => $reservations->count(),
+        ]);
     }
 }

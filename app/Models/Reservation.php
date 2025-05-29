@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -33,5 +35,9 @@ class Reservation extends Authenticatable
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function scopeOverdue($query)
+    {
+        return $query->where('returning_date', '<', Carbon::now());
     }
 }

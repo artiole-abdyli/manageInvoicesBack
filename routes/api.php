@@ -40,6 +40,7 @@ Route::delete('/reservations/{id}', [ReservationController::Class, 'destroy']);
 Route::get('/contacts/download/pdf', [ContactController::class, 'downloadContactsPdf']);
 Route::get('/reservations/download/pdf', [ReservationController::class, 'downloadReservations']);
 Route::post('/contacts/import', [ContactImportController::class, 'import']);
+Route::get('reservations/overdue', [ReservationController::class, 'overdue']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
