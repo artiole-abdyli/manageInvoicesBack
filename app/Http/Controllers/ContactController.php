@@ -24,6 +24,11 @@ class ContactController extends Controller
     public function create()
     { }
 
+    public function totalContactsNumber()
+    {
+        return $this->contactService->totalContactsNumber();
+    }
+
     /**
      * Store a newly created resource in storage.
      */

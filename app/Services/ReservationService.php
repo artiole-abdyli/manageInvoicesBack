@@ -22,6 +22,13 @@ class ReservationService
             'data' => $reservations
         ]);
     }
+    public function totalNumberOfReservations()
+    {
+        $reservationsNumber = Reservation::all()->count();
+        return response()->json([
+            'numberOfReservations' => $reservationsNumber
+        ]);
+    }
     public function singleReservation($id)
     {
         $reservation = Reservation::with(['contact', 'product'])->find($id);

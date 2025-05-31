@@ -25,7 +25,11 @@ class ContactService
             'data' => $contact
         ]);
     }
-
+    public function totalContactsNumber()
+    {
+        $contacts = Contact::all()->count();
+        return response()->json(['contactsNumber' => $contacts]);
+    }
     public function createContact(Request $request)
     {
         $contact = new Contact();

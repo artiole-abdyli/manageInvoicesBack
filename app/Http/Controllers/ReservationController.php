@@ -18,14 +18,14 @@ class ReservationController extends Controller
     {
         return $this->reservationService->listOfReservations();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function totalNumberOfReservations()
     {
-        //
+        return $this->reservationService->totalNumberOfReservations();
     }
+
+
+    public function create()
+    { }
 
 
     public function store(Request $request)
@@ -40,9 +40,7 @@ class ReservationController extends Controller
     }
 
     public function edit(string $id)
-    {
-        //
-    }
+    { }
 
 
     public function update(Request $request, string $id)

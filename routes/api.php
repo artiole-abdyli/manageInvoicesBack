@@ -33,7 +33,7 @@ Route::get('/contact/{id}', [ContactController::class, 'show']);
 Route::put('/contacts/{id}', [ContactController::class, 'update']);
 Route::delete('/contacts/{id}', [ContactController::class, 'destroy']);
 Route::get('/contact-options', [ContactController::class, 'contactsOptions']);
-
+Route::get('/contacts-number', [ContactController::class, 'totalContactsNumber']);
 Route::get('/reservations', [ReservationController::class, 'index']);
 Route::get('/reservation/{id}', [ReservationController::class, 'show']);
 Route::post('/reservations', [ReservationController::class, 'store']);
@@ -43,7 +43,7 @@ Route::get('/contacts/download/pdf', [ContactController::class, 'downloadContact
 Route::get('/reservations/download/pdf', [ReservationController::class, 'downloadReservations']);
 Route::post('/contacts/import', [ContactImportController::class, 'import']);
 Route::get('reservations/overdue', [ReservationController::class, 'overdue']);
-
+Route::get('reservations-number', [ReservationController::class, 'totalNumberOfReservations']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
