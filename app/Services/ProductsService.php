@@ -40,6 +40,11 @@ class ProductsService
 
         return response()->json(['message' => 'Product created successfully'], 201);
     }
+    public function numberOfTotalProducts()
+    {
+        $products = Product::all()->count();
+        return $products;
+    }
 
     public function deleteProduct($id)
     {

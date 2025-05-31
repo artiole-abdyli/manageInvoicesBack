@@ -40,6 +40,11 @@ class ProductController extends Controller
         return $this->productService->showProduct($id);
     }
 
+    public function numberOfTotalProducts()
+    {
+        return $this->productService->numberOfTotalProducts();
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

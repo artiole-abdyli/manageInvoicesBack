@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactImportController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Route::get("/product/{id}/reservations", [ProductController::class, 'reservation
 Route::put("/products/update/{id}", [ProductController::class, 'update']);
 Route::delete("/products/{id}", [ProductController::class, 'destroy']);
 Route::get("/product-options", [ProductController::class, 'productsOptions']);
+Route::get("/number-of-products", [ProductController::class, 'numberOfTotalProducts']);
 Route::get('/contacts', [ContactController::class, 'index']);
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/contact/{id}', [ContactController::class, 'show']);
