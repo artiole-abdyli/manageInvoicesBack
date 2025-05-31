@@ -43,7 +43,7 @@ class ProductsService
     public function numberOfTotalProducts()
     {
         $products = Product::all()->count();
-        return $products;
+        return response()->json(['data' => $products]);
     }
 
     public function deleteProduct($id)
