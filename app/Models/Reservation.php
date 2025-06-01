@@ -25,7 +25,8 @@ class Reservation extends Authenticatable
         'extra_requirement',
         'price',
         'deposit',
-        'remaining_payment'
+        'remaining_payment',
+        'status'
     ];
     public function contact()
     {

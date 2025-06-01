@@ -70,4 +70,8 @@ class ReservationController extends Controller
             'count' => $reservations->count(),
         ]);
     }
+    public function reservationsOfToday()
+    {
+        return $this->reservationService->reservationsOfToday();
+    }
 }

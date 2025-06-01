@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf; // Make sure to import
+use Carbon\Carbon;
 
 class ReservationService
 {
@@ -18,17 +19,27 @@ class ReservationService
     public function listOfReservations()
     {
         $reservations = Reservation::with('contact')->get();
+        // $overdueReservations = Reservation::where()->count();
         return response()->json([
             'data' => $reservations
         ]);
     }
+
     public function totalNumberOfReservations()
     {
-        $reservationsNumber = Reservation::all()->count();
+        $today = Carbon::today();
+
+        $reservationsNumber = Reservation::count();
+        $reservationsOfToday = Reservation::whereDate('date', $today)->get();
+        $reservationsOfTodayCount = Reservation::whereDate('date', $today)->count();
+
         return response()->json([
-            'numberOfReservations' => $reservationsNumber
+            'numberOfReservations' => $reservationsNumber,
+            'reservationsOfToday' => $reservationsOfToday,
+            'reservationsTodayCount' => $reservationsOfTodayCount,
         ]);
     }
+
     public function singleReservation($id)
     {
         $reservation = Reservation::with(['contact', 'product'])->find($id);
@@ -69,6 +80,7 @@ class ReservationService
             $reservation->returning_date = $request->input('returning_date');
             $reservation->price = $request->input('price');
             $reservation->deposit = $request->input('deposit');
+            $reservation->status = $request->input('status');
             $reservation->remaining_payment = $request->input('remaining_payment');
             $reservation->extra_requirement = $request->input('extra_requirement');
             $reservation->save();

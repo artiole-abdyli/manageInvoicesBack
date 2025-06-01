@@ -44,6 +44,7 @@ Route::get('/reservations/download/pdf', [ReservationController::class, 'downloa
 Route::post('/contacts/import', [ContactImportController::class, 'import']);
 Route::get('reservations/overdue', [ReservationController::class, 'overdue']);
 Route::get('reservations-number', [ReservationController::class, 'totalNumberOfReservations']);
+Route::get('reservations-of-today', [ReservationController::class, 'reservationsOfToday']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
