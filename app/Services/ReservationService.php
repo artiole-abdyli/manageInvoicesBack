@@ -18,27 +18,31 @@ class ReservationService
     }
     public function listOfReservations()
     {
-        $reservations = Reservation::with('contact')->get();
-        // $overdueReservations = Reservation::where()->count();
-        return response()->json([
-            'data' => $reservations
-        ]);
-    }
-
-    public function totalNumberOfReservations()
-    {
         $today = Carbon::today();
+        $reservations = Reservation::with('contact')->get();
+        $overdueReservations = Reservation::where('status', 'overdue')->count();
+
+        $activeReservations = Reservation::where('status', 'on_time')->count();
+
 
         $reservationsNumber = Reservation::count();
         $reservationsOfToday = Reservation::whereDate('date', $today)->get();
         $reservationsOfTodayCount = Reservation::whereDate('date', $today)->count();
 
+
+
         return response()->json([
+            'data' => $reservations,
+            'overdueReservations' => $overdueReservations,
             'numberOfReservations' => $reservationsNumber,
             'reservationsOfToday' => $reservationsOfToday,
             'reservationsTodayCount' => $reservationsOfTodayCount,
+            'activeReservations' => $activeReservations,
+            'onTimeReservations' => $activeReservations
         ]);
     }
+
+
 
     public function singleReservation($id)
     {

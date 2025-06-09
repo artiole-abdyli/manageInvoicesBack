@@ -6,6 +6,7 @@ use App\Models\Reservation;
 use App\Services\ReservationService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -22,8 +23,17 @@ class ReservationController extends Controller
     {
         return $this->reservationService->totalNumberOfReservations();
     }
+    public function todaysReservations()
+    {
+        // Carbon::today() returns midnight of the current date (only the date portion matters)
+        $reservations = Reservation::whereDate('date', Carbon::today())
+            ->get();
 
-
+        return response()->json([
+            'data' => $reservations,
+            'code' => 200
+        ]);
+    }
     public function create()
     { }
 
