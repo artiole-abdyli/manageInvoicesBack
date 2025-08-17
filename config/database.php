@@ -42,17 +42,7 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
-        'mongodb' => [
-            'driver'   => 'mongodb',
-            'host'     => env('DB_HOST', 'artiole.dc2.wbits.cloud'),
-            'port'     => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'your_db_name'),
-            'username' => env('DB_USERNAME', 'admin'),
-            'password' => env('DB_PASSWORD', 'your_secure_password'),
-            'options'  => [
-                'database' => 'admin', // authentication database
-            ],
-        ],
+
 
         'mysql' => [
             'driver' => 'mysql',
