@@ -28,6 +28,7 @@ class ReservationService
         $reservationsNumber = Reservation::count();
         $reservationsOfToday = Reservation::whereDate('date', $today)->get();
         $reservationsOfTodayCount = Reservation::whereDate('date', $today)->count();
+        $reservationsReturningToday = Reservation::whereDate('returning_date', $today)->get();
 
 
 
@@ -38,7 +39,8 @@ class ReservationService
             'reservationsOfToday' => $reservationsOfToday,
             'reservationsTodayCount' => $reservationsOfTodayCount,
             'activeReservations' => $activeReservations,
-            'onTimeReservations' => $activeReservations
+            'onTimeReservations' => $activeReservations,
+            'reservationsReturningToday' => $reservationsReturningToday
         ]);
     }
 

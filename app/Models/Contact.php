@@ -21,4 +21,9 @@ class Contact extends Authenticatable
         'country',
         'phone_number'
     ];
+
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }

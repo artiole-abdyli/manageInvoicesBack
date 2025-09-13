@@ -18,12 +18,7 @@ class ProductsService
 
     public function createProduct(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'price' => 'required|numeric',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+
 
         $product = new Product();
         $product->name = $request->input('name');
