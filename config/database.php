@@ -94,6 +94,23 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        // MongoDB connection using jenssegers/mongodb
+        'mongodb' => [
+            'driver' => 'mongodb',
+            // Prefer full DSN if provided (supports SRV/replica sets/Atlas)
+            'dsn' => env('MONGODB_URI'),
+            // Fallback host/port if DSN is not used
+            'host' => env('MONGODB_HOST', '127.0.0.1'),
+            'port' => env('MONGODB_PORT', 27017),
+            'database' => env('MONGODB_DATABASE', ''),
+            'username' => env('MONGODB_USERNAME'),
+            'password' => env('MONGODB_PASSWORD'),
+            'options' => [
+                // Authentication database, set to 'admin' for most deployments
+                'database' => env('MONGODB_AUTH_SOURCE', 'admin'),
+            ],
+        ],
+
     ],
 
     /*

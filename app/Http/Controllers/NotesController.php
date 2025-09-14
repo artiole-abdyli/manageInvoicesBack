@@ -12,7 +12,7 @@ class NotesController extends Controller
     protected $noteService;
     public function __construct(NotesService $noteService)
     {
-        return $this->noteService = $noteService;
+        $this->noteService = $noteService;
     }
     public function notes()
     {
@@ -69,13 +69,16 @@ class NotesController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $note = Note::where('id', $id)->first();
+            $oid = new \MongoDB\BSON\ObjectId($id);
+            $note = Note::where('_id', $oid)->firstOrFail();
             $note->title = $request->input('title');
             $note->description = $request->input('description');
             $note->date = $request->input('date');
             $note->save();
+
+            return response()->json(['message' => 'note updated', 'data' => $note]);
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return response()->json(['message' => 'update failed', 'error' => $e->getMessage()], 400);
         }
     }
 
@@ -85,10 +88,12 @@ class NotesController extends Controller
     public function destroy(string $id)
     {
         try {
-            $note = Note::findOrFail($id);
+            $oid = new \MongoDB\BSON\ObjectId($id);
+            $note = Note::where('_id', $oid)->firstOrFail();
             $note->delete();
+            return response()->json(['message' => 'note deleted']);
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return response()->json(['message' => 'delete failed', 'error' => $e->getMessage()], 400);
         }
     }
 }
