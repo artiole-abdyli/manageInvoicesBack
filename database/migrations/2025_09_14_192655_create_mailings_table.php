@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('mailings', function (Blueprint $table) {
             $table->id();
+            $table->string('date')->nullable();
+            $table->string('from')->nullable();
+            $table->string('to')->nullable();
+            $table->string('title')->nullable();
+            $table->string('subject')->nullable();
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }

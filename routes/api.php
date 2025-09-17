@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactImportController;
+use App\Http\Controllers\MailingsController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
@@ -49,6 +50,8 @@ Route::post('/contacts/import', [ContactImportController::class, 'import']);
 Route::get('reservations/overdue', [ReservationController::class, 'overdue']);
 Route::get('reservations-number', [ReservationController::class, 'totalNumberOfReservations']);
 Route::get('reservations-of-today', [ReservationController::class, 'todaysReservations']);
+Route::get('/mailings', [MailingsController::class, 'index']);
+Route::delete('/mailings/{id}', [MailingsController::class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mailings;
 use Illuminate\Http\Request;
 
-class MailingController extends Controller
+class MailingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $mailings = Mailings::all();
+        return response()->json([
+            'data' => $mailings,
+            'code' => 200,
+            'message' => 'mailings returned succesfully'
+        ]);
     }
 
     /**
@@ -59,6 +63,11 @@ class MailingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $mailing = Mailings::findOrFail($id);
+            $mailing->delete();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
