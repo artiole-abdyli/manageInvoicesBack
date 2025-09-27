@@ -69,8 +69,7 @@ class NotesController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-            $oid = new \MongoDB\BSON\ObjectId($id);
-            $note = Note::where('_id', $oid)->firstOrFail();
+            $note = Note::where('_id', $id)->firstOrFail();
             $note->title = $request->input('title');
             $note->description = $request->input('description');
             $note->date = $request->input('date');
@@ -88,8 +87,7 @@ class NotesController extends Controller
     public function destroy(string $id)
     {
         try {
-            $oid = new \MongoDB\BSON\ObjectId($id);
-            $note = Note::where('_id', $oid)->firstOrFail();
+            $note = Note::where('id', $id)->firstOrFail();
             $note->delete();
             return response()->json(['message' => 'note deleted']);
         } catch (\Exception $e) {
