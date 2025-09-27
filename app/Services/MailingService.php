@@ -112,7 +112,7 @@ class MailingService
         }
     }
 
-    public function deleteMailing(int|string $id)
+    public function deleteMailing($id)
     {
         try {
             $mailing = $this->mailings->findOrFail($id);
