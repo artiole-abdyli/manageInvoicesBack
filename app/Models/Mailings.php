@@ -2,19 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Tymon\JWTAuth\Contracts\JWTSubject;
-use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Model;
 
-
-class Mailings extends Authenticatable implements JWTSubject
+class Mailings extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
-
+    use HasFactory;
 
     protected $fillable = [
         'from',
@@ -22,19 +15,10 @@ class Mailings extends Authenticatable implements JWTSubject
         'message',
         'date',
         'subject',
-        'title'
+        'title',
     ];
-    protected $collection = 'mailings';
 
-
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
+    protected $casts = [
+        'date' => 'datetime',
+    ];
 }

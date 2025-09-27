@@ -51,6 +51,9 @@ Route::get('reservations/overdue', [ReservationController::class, 'overdue']);
 Route::get('reservations-number', [ReservationController::class, 'totalNumberOfReservations']);
 Route::get('reservations-of-today', [ReservationController::class, 'todaysReservations']);
 Route::get('/mailings', [MailingsController::class, 'index']);
+Route::post('/mailings', [MailingsController::class, 'store']);
+Route::get('/mailings/{id}', [MailingsController::class, 'show']);
+Route::put('/mailings/{id}', [MailingsController::class, 'update']);
 Route::delete('/mailings/{id}', [MailingsController::class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
