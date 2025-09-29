@@ -22,7 +22,7 @@ class ReservationService
         $reservations = Reservation::with('contact')->get();
         $overdueReservations = Reservation::where('status', 'overdue')->count();
 
-        $activeReservations = Reservation::where('status', 'on_time')->count();
+        $activeReservations = Reservation::count();
 
 
         $reservationsNumber = Reservation::count();
