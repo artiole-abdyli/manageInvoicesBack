@@ -45,6 +45,7 @@ Route::post('/reservations', [ReservationController::class, 'store']);
 Route::put('/reservations/{id}', [ReservationController::class, 'update']);
 Route::delete('/reservations/{id}', [ReservationController::Class, 'destroy']);
 Route::get('/contacts/download/pdf', [ContactController::class, 'downloadContactsPdf']);
+Route::get('/products/download/pdf',[ProductController::class, 'downloadProductsPdf']);
 Route::get('/reservations/download/pdf', [ReservationController::class, 'downloadReservations']);
 Route::post('/contacts/import', [ContactImportController::class, 'import']);
 Route::get('reservations/overdue', [ReservationController::class, 'overdue']);

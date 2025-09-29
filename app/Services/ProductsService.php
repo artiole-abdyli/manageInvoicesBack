@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Reservation;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class ProductsService
@@ -147,5 +148,13 @@ class ProductsService
                 'code' => 400
             ]);
         }
+    }
+    public function downloadProductsPdf()
+    {
+        $products = Product::all();
+
+        $pdf = Pdf::loadView('products.pdf', ['products' => $products]);
+
+        return $pdf->download('products-list.pdf');
     }
 }

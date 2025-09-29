@@ -76,4 +76,7 @@ class ProductController extends Controller
     {
         return $this->productService->reservationsForThisProduct($id);
     }
+    public function downloadProductsPdf(){
+        return $this->productService->downloadProductsPdf();
+    }
 }
